@@ -1,3 +1,21 @@
-| Welcome to 
-= current_user.name
-| !
+h1
+  | Welcome to 
+  = current_user.name
+  | !
+
+div
+  = form_tag  update_user_status_path( id: current_user.id ), remote: true do 
+    h2 Your status
+  
+    = text_area_tag :status, current_user.status, rows: 3, cols: 30 
+    = submit_tag 'Update'
+
+ul
+  - current_user.friends.each do |friend|
+    li
+      span.name = friend.name
+      span.status = friend.status
+
+
+
+
