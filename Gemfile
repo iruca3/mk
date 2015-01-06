@@ -41,10 +41,21 @@ gem 'unicorn'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'slim-rails'
+gem 'html5_validators'
+gem 'active_record_query_trace'
 gem 'draper'
+gem 'default_value_for'
+gem 'ransack'
+gem 'kaminari'
+gem 'formtastic'
+gem 'cocoon'
+
 gem 'annotate'
 
 group :development do
   gem 'pry'
   gem 'pry-rails'
 end
+gem 'devise'
+
