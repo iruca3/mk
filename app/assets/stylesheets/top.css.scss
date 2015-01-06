@@ -1,9 +1,50 @@
-.friend-list {
-  .status {
-    display: block;
-    white-space: pre;
-    font-size: 12px;
-    line-height: 14px;
-    color: #333;
+@import 'compass';
+
+h1 {
+  display: block;
+  width: 100%;
+  margin-bottom: 5px;
+  background-color: gray;
+  color: white;
+  padding: 2px 10px;
+}
+
+.input-container {
+  padding: 10px 20px;
+  h2 {
+    margin-bottom: 4px;
+  }
+  textarea {
+    @include border-radius( 6px );
+    border: 1px solid rgb( 161, 161, 161 );
+    width: 100%;
+    font-size: 13px;
+    line-height: 16px;
+    padding: 6px 10px;
+  }
+}
+
+.friend-list-container {
+  padding: 10px;
+  .friend-list {
+    li {
+      border-bottom: 1px solid rgb(197, 197, 197);
+      &:last-child {
+        border-bottom: 0
+      }
+      margin-bottom: 10px;
+      padding: 0 10px 10px 10px;
+      .name {
+        border-left: 10px solid rgb(255, 173, 47);
+        padding-left: 4px;
+      }
+      .status {
+        display: block;
+        white-space: pre;
+        font-size: 12px;
+        line-height: 14px;
+        color: #333;
+      }
+    }
   }
 }
