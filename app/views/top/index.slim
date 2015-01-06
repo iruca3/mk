@@ -10,7 +10,7 @@ div
     = text_area_tag :status, current_user.status, rows: 3, cols: 30 
     = submit_tag 'Update'
 
-ul
+ul.friend-list
   - current_user.friends.each do |friend|
     li
       span.name = friend.name
