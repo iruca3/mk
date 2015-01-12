@@ -48,3 +48,18 @@ h1 {
     }
   }
 }
+
+.status-container {
+  width: 300px;
+  float: left;
+  display: inline-block;
+}
+.heatmap-container {
+  float: left;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.friend-list-container {
+  clear: both;
+}

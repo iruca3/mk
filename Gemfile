@@ -60,3 +60,6 @@ end
 gem 'devise'
 
 gem 'dotenv-rails'
+
+gem 'd3_rails'
+gem 'cal-heatmap-rails', github: 'pavolzbell/cal-heatmap-rails', branch: :master

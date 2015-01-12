@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/pavolzbell/cal-heatmap-rails.git
+  revision: 36094cbb458dd70a4986a63948b1fe2aefb928f6
+  branch: master
+  specs:
+    cal-heatmap-rails (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -63,6 +70,8 @@ GEM
       sass (~> 3.2.19)
     compass-rails (2.0.0)
       compass (>= 0.12.2)
+    d3_rails (3.5.3)
+      railties (>= 3.1.0)
     default_value_for (3.0.0.1)
       activerecord (>= 3.2.0, < 5.0)
     devise (3.2.4)
@@ -213,10 +222,12 @@ DEPENDENCIES
   active_record_query_trace
   annotate
   bootstrap-sass (~> 3.1.1)
+  cal-heatmap-rails!
   capistrano-rails
   cocoon
   coffee-rails (~> 4.0.0)
   compass-rails
+  d3_rails
   default_value_for
   devise
   dotenv-rails

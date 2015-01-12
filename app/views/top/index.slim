@@ -1,18 +1,34 @@
+javascript:
+  window.cal_targets = [];
+
 h1
   | Welcome to 
   = current_user.name
   | !
 
 .input-container
-  = form_tag  update_user_status_path( id: current_user.id ), remote: true do 
-    h2 Your status
-  
-    = text_area_tag :status, current_user.status, rows: 3, cols: 30 
-    = submit_tag 'Update'
+    .status-container
+      = form_tag  update_user_status_path( id: current_user.id ), remote: true do 
+        h2 Current your status
+        = text_area_tag :status, current_user.status, rows: 3, cols: 30
+        = submit_tag 'Update'
+    .heatmap-container#my-heatmap
+      javascript:
+        window.cal_targets.push( { 
+          selector: '#my-heatmap',
+          data: JSON.parse( '#{ raw current_user.status_history_json }' )
+        } );
 
 .friend-list-container
   ul.friend-list
     - current_user.friends.each do |friend|
       li
-        span.name = friend.name
-        span.status = friend.status
+        .status-container
+          span.name = friend.name
+          span.status = friend.status
+        .heatmap-container id=( 'heatmap-' + friend.id.to_s )
+          javascript:
+            window.cal_targets.push( { 
+              selector: '#heatmap-#{ friend.id }',
+              data: JSON.parse( '#{ raw friend.status_history_json }' )
+            } );
