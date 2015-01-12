@@ -24,12 +24,13 @@ hr.clear-float
 .friend-list-container
   ul.friend-list
     - current_user.friends.each do |friend|
+      - friend = friend.decorate
       li.status-detail
         .status-container
           div id=( 'status-detail-' + friend.id.to_s )
           .current-status
             span.name = friend.name
-            span.status = friend.status
+            span.status = raw friend.status_with_link
             span.date = friend.updated_at.strftime( '%Y/%m/%d %H:%M:%S' )
         .heatmap-container id=( 'heatmap-' + friend.id.to_s )
           javascript:

@@ -39,10 +39,11 @@ class User < ActiveRecord::Base
   def status_history_json
     history_array = []
     self.user_status_histories.each do |hist|
+      hist = hist.decorate
       history_array.push( {
         time: hist.created_at.to_i,
         time_str: hist.created_at.strftime( '%Y/%m/%d %H:%m:%S' ),
-        status: hist.status
+        status: hist.status_with_link
       } )
     end
     JSON.generate( history_array )

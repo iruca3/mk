@@ -1,4 +1,6 @@
 class UserController < ApplicationController
+  before_action :authenticate_user!
+  
   def update
     if current_user.status != params[:status]
       current_user.status = params[:status]

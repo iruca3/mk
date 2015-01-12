@@ -1,4 +1,4 @@
-class UserDecorator < Draper::Decorator
+class UserStatusHistoryDecorator < Draper::Decorator
   delegate_all
 
   def status_with_link
@@ -8,5 +8,6 @@ class UserDecorator < Draper::Decorator
     end
     status_tag
   end
+
 
 end
