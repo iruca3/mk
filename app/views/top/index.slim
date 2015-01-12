@@ -26,6 +26,7 @@ h1
         .status-container
           span.name = friend.name
           span.status = friend.status
+          span.date = friend.updated_at.strftime( '%Y/%m/%d %H:%M:%S' )
         .heatmap-container id=( 'heatmap-' + friend.id.to_s )
           javascript:
             window.cal_targets.push( { 
