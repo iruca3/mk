@@ -11,6 +11,7 @@ h1 {
 
 .input-container {
   padding: 10px 20px;
+  display: inline-block;
   h2 {
     margin-bottom: 4px;
   }
@@ -26,48 +27,52 @@ h1 {
 
 .friend-list-container {
   padding: 10px;
-  .friend-list {
-    li {
-      border-bottom: 1px solid rgb(197, 197, 197);
-      display: inline-block;
-      position: relative;
-      margin-bottom: 10px;
-      padding: 0 10px 10px 10px;
-      &:last-child {
-        border-bottom: 0
-      }
-      .name {
-        border-left: 10px solid rgb(255, 173, 47);
-        padding-left: 4px;
-        display: inline-block;
-        margin-bottom: 8px;
-      }
-      .status {
-        display: block;
-        white-space: pre;
-        font-size: 12px;
-        line-height: 14px;
-        color: #333;
-        width: 100%;
-        word-break: break-all;
-        word-wrap: break-word;
-      }
-      .date {
-        position: absolute;
-        bottom: 10px;
-        left: 10px;
-        font-size: 10px;
-        color: #777;
-      }
-    }
-  }
 }
 
+li.status-detail {
+  display: inline-block;
+}
+
+.status-detail {
+  border-bottom: 1px solid rgb(197, 197, 197);
+  display: block;
+  position: relative;
+  margin-bottom: 10px;
+  padding: 0 10px 10px 10px;
+  &:last-child {
+    border-bottom: 0
+  }
+  .name {
+    border-left: 10px solid rgb(255, 173, 47);
+    padding-left: 4px;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+  .status {
+    display: block;
+    white-space: pre;
+    font-size: 12px;
+    line-height: 14px;
+    color: #333;
+    width: 100%;
+    word-break: break-all;
+    word-wrap: break-word;
+    margin-bottom: 20px;
+  }
+  .date {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 10px;
+    color: #777;
+  }
+}
 .status-container {
   width: 300px;
   float: left;
   display: inline-block;
 }
+
 .heatmap-container {
   float: left;
   display: inline-block;
@@ -75,5 +80,9 @@ h1 {
 }
 
 .friend-list-container {
+  clear: both;
+}
+
+.clear-float {
   clear: both;
 }

@@ -31,12 +31,14 @@ class User < ActiveRecord::Base
   has_many :user_status_histories
 
   def status_history_json
-    history_hash = {}
+    history_array = []
     self.user_status_histories.each do |hist|
-      history_hash[ hist.created_at.to_i ] ||= 0
-      history_hash[ hist.created_at.to_i ] += 1
+      history_array.push( {
+        time: hist.created_at.to_i,
+        status: hist.status
+      } )
     end
-    JSON.generate( history_hash )
+    JSON.generate( history_array )
   end
 
 end
