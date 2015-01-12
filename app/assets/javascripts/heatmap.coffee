@@ -30,7 +30,7 @@ $(window).on( 'load', ->
           if date.getTime() <= d.time * 1000 && date.getTime() + 24 * 60 * 60 * 1000 > d.time * 1000
             status_dom = $('<div class="status-detail">')
             status_dom.append( $('<span class="status">').text( d.status ) )
-            status_dom.append( $('<span class="date">').text( d.time ) )
+            status_dom.append( $('<span class="date">').text( d.time_str ) )
             $( this.detail_target ).append( status_dom )
     } )
     target.heatmap.data = target.data

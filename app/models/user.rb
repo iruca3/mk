@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
     self.user_status_histories.each do |hist|
       history_array.push( {
         time: hist.created_at.to_i,
+        time_str: hist.created_at.strftime( '%Y/%m/%d %H:%m:%S' ),
         status: hist.status
       } )
     end
