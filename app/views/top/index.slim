@@ -19,7 +19,7 @@ h1
         window.cal_targets.push( { 
           selector: '#my-heatmap',
           detail_target: '#my-status-detail',
-          data: JSON.parse( '#{ raw current_user.status_history_json }' )
+          data: JSON.parse( '#{ raw escape_javascript( current_user.status_history_json ) }' )
         } );
 
 hr.clear-float
@@ -39,5 +39,5 @@ hr.clear-float
             window.cal_targets.push( { 
               selector: '#heatmap-#{ friend.id }',
               detail_target: '#status-detail-#{ friend.id }',
-              data: JSON.parse( '#{ raw friend.status_history_json }' )
+              data: JSON.parse( '#{ raw escape_javascript( friend.status_history_json ) }' )
             } );
