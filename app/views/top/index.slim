@@ -1,11 +1,6 @@
 javascript:
   window.cal_targets = [];
 
-h1
-  | Welcome to 
-  = current_user.name
-  | !
-
 .input-container
     .status-container
       #my-status-detail
@@ -14,9 +9,11 @@ h1
           h2 Current your status
           = text_area_tag :status, current_user.status, rows: 3, cols: 30
           = submit_tag 'Update'
+          = link_to 'Option', user_option_path, class: 'btn'
     .heatmap-container#my-heatmap
       javascript:
         window.cal_targets.push( { 
+          span: #{ current_user.span },
           selector: '#my-heatmap',
           detail_target: '#my-status-detail',
           data: JSON.parse( '#{ raw escape_javascript( current_user.status_history_json ) }' )
@@ -37,6 +34,7 @@ hr.clear-float
         .heatmap-container id=( 'heatmap-' + friend.id.to_s )
           javascript:
             window.cal_targets.push( { 
+              span: #{ friend.span },
               selector: '#heatmap-#{ friend.id }',
               detail_target: '#status-detail-#{ friend.id }',
               data: JSON.parse( '#{ raw escape_javascript( friend.status_history_json ) }' )

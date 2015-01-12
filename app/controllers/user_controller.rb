@@ -9,4 +9,13 @@ class UserController < ApplicationController
       status: params[:status]
     } )
   end
+
+  def update_option
+    unless [ 0, 100, 200 ].index( params[:span].to_i )
+      render text: 'Invalid' and return
+    end
+    current_user.span = params[:span].to_i
+    current_user.save
+
+  end
 end

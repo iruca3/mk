@@ -5,22 +5,46 @@
     stats[ d.time ] += 1
   stats
 
-$(window).on( 'load', ->
+$(window).on( 'load page:load', ->
   start_date = new Date()
   start_date.setMonth( start_date.getMonth() - 5 )
   for target in window.cal_targets
     target.heatmap = new CalHeatMap()
+    if target.span == 0 # daily
+      domain = 'month'
+      subDomain = 'day'
+      range = 6
+      label = '%Y-%m'
+      rowLimit = null
+      colLimit = null
+    else if target.span == 100 # weekly
+      domain = 'month'
+      subDomain = 'week'
+      range = 6
+      label = '%Y-%m'
+      rowLimit = null
+      colLimit = null
+    else if target.span == 200 #monthly
+      domain = 'year'
+      subDomain = 'month'
+      range = 3
+      label = '%Y'
+      rowLimit = null
+      colLimit = null
     target.heatmap.init( {
       itemSelector: target.selector
-      domain: "month"
-      subDomain: "day"
-      range: 6
+      domain: domain
+      subDomain: subDomain
+      range: range
       start: start_date
-      domainLabelFormat: "%Y-%m"
+      domainLabelFormat: label
       data: target.data
+      rowLimit: rowLimit
+      colLimit: colLimit
       afterLoadData: heatmap_data_parser
       dataType: "json"
       highlight: "now"
+      tooltip: true
       legend: [ 2, 4, 6, 8 ]
       onClick: ( date, data ) ->
         $( this.detail_target ).html( '' )

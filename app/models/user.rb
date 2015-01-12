@@ -30,6 +30,12 @@ class User < ActiveRecord::Base
   has_many :friends, through: :friend_relations, foreign_key: :friend_id, class_name: 'User'
   has_many :user_status_histories
 
+  module Span
+    DAILY = 0
+    WEEKLY = 100
+    MONTHLY = 200
+  end
+
   def status_history_json
     history_array = []
     self.user_status_histories.each do |hist|

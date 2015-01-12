@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150112050053) do
+ActiveRecord::Schema.define(version: 20150112071007) do
 
   create_table "friends", force: true do |t|
     t.integer  "user_id",    null: false
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20150112050053) do
     t.string   "last_sign_in_ip"
     t.integer  "failed_attempts",        default: 0,  null: false
     t.datetime "locked_at"
+    t.integer  "span",                   default: 0,  null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
