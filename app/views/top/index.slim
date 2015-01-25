@@ -1,3 +1,5 @@
+- @status = current_user.last_status
+
 javascript:
   window.cal_targets = [];
 
@@ -7,7 +9,8 @@ javascript:
       .current-status
         = form_tag  update_user_status_path( id: current_user.id ), remote: true do 
           h2 Current your status
-          = text_area_tag :status, current_user.status, rows: 3, cols: 30
+          = text_area_tag :status, @status.status, rows: 3, cols: 30
+          = file_field_tag :image
           = submit_tag 'Update'
           = link_to 'Option', user_option_path, class: 'btn'
     .heatmap-container#my-heatmap
@@ -25,13 +28,19 @@ hr.clear-float
   ul.friend-list
     - current_user.friends.each do |friend|
       - friend = friend.decorate
+      - friend_status = friend.last_status
       li.status-detail
         .status-container
           div id=( 'status-detail-' + friend.id.to_s )
           .current-status
             span.name = friend.name
-            span.status = raw friend.status_with_link
-            span.date = friend.updated_at.strftime( '%Y/%m/%d %H:%M:%S' )
+            - if friend_status
+              span.status = raw friend_status.decorate.status_with_link
+              span.date = friend_status.created_at.strftime( '%Y/%m/%d %H:%M:%S' )
+              - unless friend_status.image.blank?
+                .image-container
+                  = link_to friend_status.image.url, target: '_blank' do
+                    = image_tag friend_status.image.url( :thumb2x ), class: 'thumb'
         .heatmap-container id=( 'heatmap-' + friend.id.to_s )
           javascript:
             window.cal_targets.push( { 

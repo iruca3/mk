@@ -7,8 +7,10 @@
 #  status     :text
 #  created_at :datetime
 #  updated_at :datetime
+#  image      :string(255)
 #
 
 class UserStatusHistory < ActiveRecord::Base
   belongs_to :user
+  mount_uploader :image, ImageUploader
 end

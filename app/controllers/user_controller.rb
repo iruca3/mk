@@ -2,11 +2,10 @@ class UserController < ApplicationController
   before_action :authenticate_user!
   
   def update
-    if current_user.status != params[:status]
-      current_user.status = params[:status]
-      current_user.save
+    if ( current_user.last_status && current_user.last_status.status != params[:status] ) || params[:image]
       UserStatusHistory.create( {
         user_id: current_user.id,
+        image: params[:image],
         status: params[:status]
       } )
     end

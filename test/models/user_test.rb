@@ -4,7 +4,6 @@
 #
 #  id                     :integer          not null, primary key
 #  name                   :string(255)      not null
-#  status                 :text
 #  created_at             :datetime
 #  updated_at             :datetime
 #  email                  :string(255)      default(""), not null
@@ -19,6 +18,8 @@
 #  last_sign_in_ip        :string(255)
 #  failed_attempts        :integer          default(0), not null
 #  locked_at              :datetime
+#  span                   :integer          default(0), not null
+#  rss_url                :string(255)
 #
 
 require 'test_helper'

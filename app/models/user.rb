@@ -4,7 +4,6 @@
 #
 #  id                     :integer          not null, primary key
 #  name                   :string(255)      not null
-#  status                 :text
 #  created_at             :datetime
 #  updated_at             :datetime
 #  email                  :string(255)      default(""), not null
@@ -19,6 +18,8 @@
 #  last_sign_in_ip        :string(255)
 #  failed_attempts        :integer          default(0), not null
 #  locked_at              :datetime
+#  span                   :integer          default(0), not null
+#  rss_url                :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -36,6 +37,16 @@ class User < ActiveRecord::Base
     MONTHLY = 200
   end
 
+  def span_ms
+    if self.span == 0
+      return 24 * 60 * 60 * 1000
+    elsif self.span == 100
+      return 7 * 24 * 60 * 60 * 1000
+    else
+      return 31 * 24 * 60 * 60 * 1000
+    end
+  end
+
   def status_history_json
     history_array = []
     self.user_status_histories.each do |hist|
@@ -43,10 +54,18 @@ class User < ActiveRecord::Base
       history_array.push( {
         time: hist.created_at.to_i,
         time_str: hist.created_at.strftime( '%Y/%m/%d %H:%m:%S' ),
-        status: hist.status_with_link
+        status: hist.status_with_link,
+        image_thumb_url: hist.image.url( :thumb2x ),
+        image_url: hist.image.url,
+        span: self.span_ms
       } )
     end
     JSON.generate( history_array )
+  end
+
+  def last_status
+    return UserStatusHistory.new( created_at: DateTime.now ) if self.user_status_histories.count <= 0
+    return self.user_status_histories.order( 'id DESC' ).first
   end
 
 end

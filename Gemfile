@@ -63,3 +63,7 @@ gem 'dotenv-rails'
 
 gem 'd3_rails'
 gem 'cal-heatmap-rails', github: 'pavolzbell/cal-heatmap-rails', branch: :master
+
+gem 'carrierwave'
+gem 'rmagick'
+gem 'remotipart'

@@ -49,12 +49,14 @@ $(window).on( 'load page:load', ->
       onClick: ( date, data ) ->
         $( this.detail_target ).html( '' )
         for d in this.data
-          console.log date.getTime()
-          console.log d.time
-          if date.getTime() <= d.time * 1000 && date.getTime() + 24 * 60 * 60 * 1000 > d.time * 1000
+          if date.getTime() <= d.time * 1000 && date.getTime() + d.span > d.time * 1000
             status_dom = $('<div class="status-detail">')
+            image_dom = $('<img class="thumb">').attr( 'src', d.image_thumb_url )
+            image_link_dom = $('<a>').attr( 'href', d.image_url ).attr( 'target', '_blank' )
+            image_link_dom.append( image_dom )
             status_dom.append( $('<span class="status">').html( d.status ) )
             status_dom.append( $('<span class="date">').text( d.time_str ) )
+            status_dom.append( $('<div class="image-container">').append( image_link_dom ) )
             $( this.detail_target ).append( status_dom )
     } )
     target.heatmap.data = target.data
