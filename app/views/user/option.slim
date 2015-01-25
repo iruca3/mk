@@ -1,4 +1,9 @@
 = form_tag update_user_option_path, remote: true, method: :patch do
+  label for="span" あなたの目標更新頻度
   = select_tag :span, options_for_select( { 'Daily' => 0, 'Weekly' => 100, 'Monthly' => 200 }, current_user.span )
+  br
+  label for="rss_url" 入力補助用 あなたのブログのRSS
+  = text_field_tag :rss_url, current_user.rss_url
+  br
   = submit_tag 'Save'
 = link_to 'Top', '/'

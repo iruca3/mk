@@ -11,8 +11,20 @@ javascript:
           h2 Current your status
           = text_area_tag :status, @status.status, rows: 3, cols: 30
           = file_field_tag :image
-          = submit_tag 'Update'
-          = link_to 'Option', user_option_path, class: 'btn'
+          .button-container
+            = submit_tag 'Update'
+            = link_to 'Option', user_option_path, class: 'btn'
+            - unless current_user.rss_url.blank?
+              = link_to 'Get from RSS', user_rss_path, class: 'btn btn-getrss', remote: true
+              = image_tag 'loading.gif', class: 'loading-rss'
+              coffee:
+                $('.btn-getrss').on( 'click', ->
+                  $('.btn-getrss').attr( 'disabled', 'disabled' )
+                  $('.loading-rss').show()
+                  $('.btn-getrss').hide()
+                )
+                $('.loading-rss').hide()
+            
     .heatmap-container#my-heatmap
       javascript:
         window.cal_targets.push( { 

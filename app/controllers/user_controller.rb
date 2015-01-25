@@ -1,3 +1,5 @@
+require 'rss'
+
 class UserController < ApplicationController
   before_action :authenticate_user!
   
@@ -16,7 +18,13 @@ class UserController < ApplicationController
       render text: 'Invalid' and return
     end
     current_user.span = params[:span].to_i
+    current_user.rss_url = params[:rss_url]
     current_user.save
 
+  end
+
+  def rss
+    rss = RSS::Parser.parse( current_user.rss_url )
+    @article = rss.items.first
   end
 end
