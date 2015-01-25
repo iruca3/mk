@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
   end
 
   def last_status
-    return UserStatusHistory.new( created_at: DateTime.now ) if self.user_status_histories.count <= 0
+    return UserStatusHistory.new( status: '', created_at: DateTime.now ) if self.user_status_histories.count <= 0
     return self.user_status_histories.order( 'id DESC' ).first
   end
 
